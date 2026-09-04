@@ -1,0 +1,58 @@
+SHELL := /bin/bash
+
+PLATFORM_DIR := infra/platform
+GPU_DIR := infra/gpu
+
+
+.PHONY: platform-up platform-down gpu-up gpu-down lab-up lab-down
+
+
+platform-up:
+	cd $(PLATFORM_DIR) && tofu init
+	cd $(PLATFORM_DIR) && tofu apply -auto-approve
+
+
+platform-down:
+	cd $(PLATFORM_DIR) && tofu destroy -auto-approve
+
+
+gpu-up:
+	cd $(GPU_DIR) && tofu init
+	cd $(GPU_DIR) && tofu apply -auto-approve
+
+
+gpu-down:
+	cd $(GPU_DIR) && tofu destroy -auto-approve
+
+
+lab-up: platform-up gpu-up
+	@echo "AI Lab is ready"
+
+
+lab-down: gpu-down platform-down
+	@echo "AI Lab destroyed"
+
+
+
+or 
+
+
+make init
+
+make platform-up
+make platform-status
+
+make gpu-up
+make gpu-status
+make gpu-down
+
+make lab-up
+make lab-status
+make lab-down
+
+make k8s-status
+make gpu-check
+
+make inference-up
+make inference-test
+make inference-down

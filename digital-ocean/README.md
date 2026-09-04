@@ -1,4 +1,56 @@
 # Digital Ocean Loacl LLM Inference Benchmarking System
+## Design Blueprint:
+
+```bash
+Infrastructure
+├── OpenTofu
+├── DO VPC
+├── NAT
+├── Firewall
+├── CPU Platform Node
+└── GPU Worker
+
+Kubernetes
+├── RKE2
+├── Cilium
+├── Gateway API
+├── Envoy Gateway
+└── cert-manager
+
+GPU
+├── NVIDIA Driver
+├── Container Toolkit
+├── GPU Operator
+├── DCGM Exporter
+└── Node Feature Discovery
+
+Observability
+├── Prometheus
+├── Grafana
+└── OpenTelemetry
+
+MLOps
+├── MLflow
+└── S3
+
+Model Serving
+├── vLLM
+├── Triton
+└── KServe
+
+GenAI
+├── FastAPI
+├── Embedding model
+├── Qdrant
+├── RAG
+├── MCP
+└── Agent
+
+GitOps
+├── Git
+└── ArgoCD
+```
+
 
 ## Digital Ocean self managed RKE2 Inference System Architecture:
 
