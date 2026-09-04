@@ -1,0 +1,10 @@
+# Local OpenTofu/Terraform data
+.terraform/
+
+# State files
+*.tfstate
+*.tfstate.backup
+
+# Sensitive variable files
+*.tfvars
+*.tfvars.json
