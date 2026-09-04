@@ -166,6 +166,26 @@ use_lockfile = true
 tofu destroy
 ```
 
+## Generate SSH Keys to authenticate with Droplets :
+
+```bash
+# Insert you keyname and generate a new keypair
+ssh-keygen -t ed25519 \
+  -f ~/.ssh/do-ai-lab \ 
+  -C "do-ai-lab"
+
+# Export only the public key 
+~/.ssh/do-ai-lab       ← PRIVATE KEY
+~/.ssh/do-ai-lab.pub   ← PUBLIC KEY
+```
+
+# Create Opentofu resource like 
+```h
+resource "digitalocean_ssh_key" "ai_lab" {
+  name       = "${var.project_name}-ssh-key"
+  public_key = file(pathexpand(var.ssh_public_key_path))
+}
+```
 
 ## GitHub Flow:
 ```bash

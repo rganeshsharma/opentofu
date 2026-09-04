@@ -22,3 +22,20 @@ output "nat_gateway_egresses" {
   description = "NAT Gateway public egress information"
   value       = digitalocean_vpc_nat_gateway.main.egresses
 }
+
+output "rke2_firewall_id" {
+  description = "DigitalOcean RKE2 Cloud Firewall ID"
+  value       = digitalocean_firewall.rke2.id
+}
+
+
+output "rke2_cpu_tag" {
+  description = "Tag assigned to RKE2 CPU nodes"
+  value       = digitalocean_tag.rke2_cpu.name
+}
+
+
+output "rke2_gpu_tag" {
+  description = "Tag assigned to RKE2 GPU nodes"
+  value       = digitalocean_tag.rke2_gpu.name
+}

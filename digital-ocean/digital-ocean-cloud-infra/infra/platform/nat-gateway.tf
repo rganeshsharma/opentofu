@@ -5,7 +5,7 @@ resource "digitalocean_vpc_nat_gateway" "main" {
   size   = "1"
 
   vpcs {
-    vpc_uuid       = digitalocean_vpc.main.id
+    vpc_uuid        = digitalocean_vpc.main.id
     default_gateway = true
   }
 
