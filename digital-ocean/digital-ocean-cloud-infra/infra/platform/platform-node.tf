@@ -15,7 +15,7 @@ resource "digitalocean_droplet" "cpu_node" {
   graceful_shutdown = true
 
   user_data = <<-EOF
-    #cloud-config
+    #cloud-config required for rke2 server instance
     package_update: true
     package_upgrade: false
     packages:
