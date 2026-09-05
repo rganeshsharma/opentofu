@@ -281,17 +281,16 @@ NFD Worker                 NFD Worker
                          DCGM Exporter
 ```
 
-## Gateway Incoming request flow:
+## Gateway Incoming request flow for Model Serving:
 
 ```bash
 Laptop
    │
    ↓
-Public IP
+DigitalOcean LB (Load Balance and Forward traffic)
    │
-CPU node
    │
-Envoy Gateway
+Envoy Gateway (Terminate SSL)
    │
 HTTPRoute
    │
@@ -304,6 +303,6 @@ HTTPRoute
                        │
                    GPU worker
                        │
-                  RTX 4000
+                  RTX 4000/L40s
 ```
 

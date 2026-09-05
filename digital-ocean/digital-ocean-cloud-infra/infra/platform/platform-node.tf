@@ -1,8 +1,8 @@
 resource "digitalocean_droplet" "cpu_node" {
-  name   = "${var.project_name}-platform-droplet"
-  region = var.region
-  image  = var.cpu_image
-  size   = var.cpu_size
+  name     = "${var.project_name}-platform-droplet"
+  region   = var.region
+  image    = var.cpu_image
+  size     = var.cpu_size
   vpc_uuid = digitalocean_vpc.main.id
   ssh_keys = [
     digitalocean_ssh_key.ai_lab.fingerprint
@@ -10,8 +10,8 @@ resource "digitalocean_droplet" "cpu_node" {
   tags = [
     digitalocean_tag.rke2_cpu.name
   ]
-  monitoring = false
-  backups = false
+  monitoring        = false
+  backups           = false
   graceful_shutdown = true
 
   user_data = <<-EOF

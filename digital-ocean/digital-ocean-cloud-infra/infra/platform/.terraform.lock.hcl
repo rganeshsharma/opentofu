@@ -1,8 +1,9 @@
 # This file is maintained automatically by "tofu init".
 # Manual edits may be lost in future updates.
 
-provider "registry.opentofu.org/hashicorp/digitalocean" {
-  version = "2.100.0"
+provider "registry.opentofu.org/digitalocean/digitalocean" {
+  version     = "2.100.0"
+  constraints = "2.100.0"
   hashes = [
     "h1:+1p5n5KeGjz/ulw/ZLXoaBkF+2UTgKqWqERw1nA2sJQ=",
     "h1:79G5uDt1VHL6gWtSnK8lCOHZpo/jp/kSGA7FXtqQvX4=",

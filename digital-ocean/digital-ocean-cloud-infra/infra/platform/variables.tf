@@ -14,7 +14,10 @@ variable "vpc_cidr" {
   default     = "10.10.0.0/16"
 }
 
-
+variable "domain_name" {
+  description = "Root DNS domain"
+  type        = string
+}
 
 variable "project_name" {
   description = "Project prefix used for DigitalOcean resources"
