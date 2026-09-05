@@ -1,5 +1,8 @@
 # Digital Ocean Loacl LLM Inference Benchmarking System
-## Design Blueprint:
+
+## Digital Ocean self managed RKE2 Inference System Architecture:
+
+![HLD-Architecture]digital-ocean-inferecne-system/opentofu/arch.svg
 
 ```bash
 Infrastructure
@@ -51,10 +54,6 @@ GitOps
 └── ArgoCD
 ```
 
-
-## Digital Ocean self managed RKE2 Inference System Architecture:
-
-![HLD-Architecture]digital-ocean-inferecne-system/opentofu/arch.svg
 
 ```bash
 DigitalOcean VPC
@@ -110,7 +109,7 @@ Platform :                         32 GB RAM
                                    TensorRT-LLM
 
 # Note: We are not using DOKS cluster for cost savings, ideally for a PROD setup always choose a managed K8s distrubution, in this case Digital ocean Kubernetes Service 
-
+# Choosing GPU is completely your choice, Here in this examples you will see multiple GPU's used RTX 4000 Ada and NVIDIA L40S with 48 GB GPU VRAM 8 vCPU 64 GiB system RAM and 500 GiB local NVMe 
 ```
 
 ## Diretory structure:
@@ -167,6 +166,26 @@ use_lockfile = true
 tofu destroy
 ```
 
+## Generate SSH Keys to authenticate with Droplets :
+
+```bash
+# Insert you keyname and generate a new keypair
+ssh-keygen -t ed25519 \
+  -f ~/.ssh/do-ai-lab \
+  -C "do-ai-lab"
+
+# Export only the public key 
+~/.ssh/do-ai-lab       ← PRIVATE KEY
+~/.ssh/do-ai-lab.pub   ← PUBLIC KEY
+```
+
+# Create Opentofu resource like 
+```h
+resource "digitalocean_ssh_key" "ai_lab" {
+  name       = "${var.project_name}-ssh-key"
+  public_key = file(pathexpand(var.ssh_public_key_path))
+}
+```
 
 ## GitHub Flow:
 ```bash

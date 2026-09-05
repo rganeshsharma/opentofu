@@ -109,7 +109,7 @@ Platform :                         32 GB RAM
                                    TensorRT-LLM
 
 # Note: We are not using DOKS cluster for cost savings, ideally for a PROD setup always choose a managed K8s distrubution, in this case Digital ocean Kubernetes Service 
-
+# Choosing GPU is completely your choice, Here in this examples you will see multiple GPU's used RTX 4000 Ada and NVIDIA L40S with 48 GB GPU VRAM 8 vCPU 64 GiB system RAM and 500 GiB local NVMe 
 ```
 
 ## Diretory structure:
@@ -171,7 +171,7 @@ tofu destroy
 ```bash
 # Insert you keyname and generate a new keypair
 ssh-keygen -t ed25519 \
-  -f ~/.ssh/do-ai-lab \ 
+  -f ~/.ssh/do-ai-lab \
   -C "do-ai-lab"
 
 # Export only the public key 
