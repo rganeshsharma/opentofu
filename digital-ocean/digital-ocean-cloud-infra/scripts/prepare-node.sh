@@ -51,3 +51,12 @@ sudo sysctl net.bridge.bridge-nf-call-iptables net.bridge.bridge-nf-call-ip6tabl
 echo "Stopping and Disabling UFW ..."
 sudo systemctl stop ufw
 sudo systemctl disable ufw
+
+echo "Install kubectl..." && curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
+sudo install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl
+echo "Installed Kubectl client with version " && kubectl version --client
+
+echo "Installing Helm..." && curl -fsSL -o get_helm.sh https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-4
+chmod 700 get_helm.sh
+./get_helm.sh
+echo "Installed Helm with version " && helm version

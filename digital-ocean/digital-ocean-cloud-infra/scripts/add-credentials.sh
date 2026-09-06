@@ -1,12 +1,12 @@
 security add-generic-password \
   -a "$USER" \
   -s "digitalocean-s3-access-key" \
-  -w "DO801QZVJ6WLEXL4CNP8"
+  -w ""
 
 security add-generic-password \
   -a "$USER" \
   -s "digitalocean-s3-secret-key" \
-  -w "xwPS4f3blH4mdE4IA7AMKNiuyXLxKAJ4rlBe6kLolhI"
+  -w ""
 
 security add-generic-password \
   -a "$USER" \
