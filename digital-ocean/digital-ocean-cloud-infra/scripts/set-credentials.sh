@@ -2,9 +2,9 @@
 
 set -euo pipefail
 
-security add-generic-password \
-  -a "$USER" \
-  -s 
+# security add-generic-password \
+#   -a "$USER" \
+#   -s 
 
 export DIGITALOCEAN_TOKEN="$(
     security find-generic-password \

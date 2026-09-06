@@ -62,6 +62,6 @@ output "ssh_command_cpu" {
 }
 
 
-output "ssh_command_gpu" {
-  value = "ssh -i ~/.ssh/do-ai-lab root@${digitalocean_droplet.gpu_node.ipv4_address}"
-}
+# output "ssh_command_gpu" {
+#   value = "ssh -i ~/.ssh/do-ai-lab root@${digitalocean_droplet.gpu_node.ipv4_address}"
+# }

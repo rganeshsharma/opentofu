@@ -26,7 +26,7 @@ variable "project_name" {
 
 variable "admin_cidrs" {
   description = "Public CIDR addresses allowed to access SSH and Kubernetes API"
-  type = list(string)
+  type        = list(string)
   validation {
     condition     = length(var.admin_cidrs) > 0
     error_message = "At least one admin CIDR must be provided."
