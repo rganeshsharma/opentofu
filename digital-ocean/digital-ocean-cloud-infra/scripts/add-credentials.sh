@@ -1,19 +1,19 @@
 security add-generic-password \
   -a "$USER" \
   -s "digitalocean-s3-access-key" \
-  -w ""
+  -w "XXXXXXXXXYYYYYYYYXXXXXXXXXXXXXX"
 
 security add-generic-password \
   -a "$USER" \
   -s "digitalocean-s3-secret-key" \
-  -w ""
+  -w "XXXXXXZXCFAGFSFAHSXXXXXXXXXX"
 
 security add-generic-password \
   -a "$USER" \
   -s "github-token"
-  -w 
+  -w "XXXXXXJSHJBDHJBSHJDBSXXXXXXXXXXXX"
 
 security add-generic-password \
   -a "$USER" \
-  -s "digitalocean-spaces-access-key"
-  -w 
+  -s "digitalocean-api-token"
+  -w "do.XXXXXXJSHJBDHJBSHJDBSXXXXXXXXXXXX"
