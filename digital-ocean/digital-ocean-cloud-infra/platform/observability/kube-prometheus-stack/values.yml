@@ -1,0 +1,227 @@
+# kube-prometheus-stack
+# Simple RKE2 / DigitalOcean lab configuration
+
+# ---------------------------------------------------------
+# Prometheus Operator
+# ---------------------------------------------------------
+
+prometheusOperator:
+
+  resources:
+    requests:
+      cpu: 100m
+      memory: 128Mi
+
+    limits:
+      cpu: 500m
+      memory: 512Mi
+
+
+# ---------------------------------------------------------
+# Prometheus
+# ---------------------------------------------------------
+
+prometheus:
+
+  enabled: true
+
+  service:
+    type: ClusterIP
+
+  prometheusSpec:
+
+    replicas: 1
+
+    scrapeInterval: 30s
+    evaluationInterval: 30s
+
+    # Lab retention
+    retention: 3d
+
+    # Keep some free space on the 5Gi PVC
+    retentionSize: "4GB"
+
+    resources:
+
+      requests:
+        cpu: 250m
+        memory: 512Mi
+
+      limits:
+        cpu: 1000m
+        memory: 1536Mi
+
+    storageSpec:
+
+      volumeClaimTemplate:
+
+        spec:
+
+          accessModes:
+            - ReadWriteOnce
+
+          resources:
+            requests:
+              storage: 5Gi
+
+          # Uncomment if you want to explicitly pin DO CSI
+          #
+          # storageClassName: do-block-storage
+
+
+# ---------------------------------------------------------
+# Grafana
+# ---------------------------------------------------------
+
+grafana:
+
+  enabled: true
+
+  replicas: 1
+
+  service:
+    type: ClusterIP
+
+  resources:
+
+    requests:
+      cpu: 100m
+      memory: 128Mi
+
+    limits:
+      cpu: 500m
+      memory: 512Mi
+
+  persistence:
+
+    enabled: true
+
+    type: pvc
+
+    accessModes:
+      - ReadWriteOnce
+
+    size: 1Gi
+
+    # Uncomment if required
+    #
+    # storageClassName: do-block-storage
+
+  # Do NOT store admin password in Git.
+  admin:
+
+    existingSecret: grafana-admin-credentials
+    userKey: admin-user
+    passwordKey: admin-password
+
+  # Discover dashboards provisioned using ConfigMaps.
+  sidecar:
+
+    dashboards:
+      enabled: true
+      searchNamespace: ALL
+
+    datasources:
+      enabled: true
+
+  grafana.ini:
+
+    analytics:
+      reporting_enabled: false
+      check_for_updates: false
+
+    security:
+      disable_gravatar: true
+
+    users:
+      allow_sign_up: false
+
+
+# ---------------------------------------------------------
+# Alertmanager
+# ---------------------------------------------------------
+
+alertmanager:
+
+  enabled: true
+
+  service:
+    type: ClusterIP
+
+  alertmanagerSpec:
+
+    replicas: 1
+
+    resources:
+
+      requests:
+        cpu: 50m
+        memory: 64Mi
+
+      limits:
+        cpu: 250m
+        memory: 256Mi
+
+    # No PVC for the lab.
+    # Alertmanager configuration itself is managed by Kubernetes.
+    # Silences/state will be lost if the pod is recreated.
+
+
+# ---------------------------------------------------------
+# kube-state-metrics
+# ---------------------------------------------------------
+
+kube-state-metrics:
+
+  resources:
+
+    requests:
+      cpu: 50m
+      memory: 64Mi
+
+    limits:
+      cpu: 250m
+      memory: 256Mi
+
+
+# ---------------------------------------------------------
+# Node Exporter
+# ---------------------------------------------------------
+
+prometheus-node-exporter:
+
+  resources:
+
+    requests:
+      cpu: 50m
+      memory: 64Mi
+
+    limits:
+      cpu: 250m
+      memory: 128Mi
+
+
+# ---------------------------------------------------------
+# RKE2 Control Plane Monitoring
+# ---------------------------------------------------------
+#
+# RKE2 runs several control-plane components as static pods.
+# Their metrics endpoints can require additional RKE2-specific
+# configuration.
+#
+# Disable them initially so Grafana/Prometheus doesn't show
+# misleading DOWN targets.
+#
+# We can enable these properly later.
+
+kubeEtcd:
+  enabled: false
+
+kubeControllerManager:
+  enabled: false
+
+kubeScheduler:
+  enabled: false
+
+kubeProxy:
+  enabled: false
