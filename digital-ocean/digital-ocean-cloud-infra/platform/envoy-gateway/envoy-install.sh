@@ -14,11 +14,14 @@ helm template envoygateway-crds \
 
 echo "Verify Envoy CRD's Installation..." && kubectl get crd | grep gateway.envoyproxy.io
 
-echo "Create envoy NS..." && kubectl create namespace envoy-gateway-system
+echo "Create envoy NS..." && \
+kubectl create namespace envoy-gateway-system \
+  --dry-run=client \
+  -o yaml | kubectl apply -f -
 
 echo "Add and verify Labels...."  && \
 kubectl label namespace envoy-gateway-system \
-  app.kubernetes.io/part-of=envoy-gateway \ 
+  app.kubernetes.io/part-of=envoy-gateway \
   --overwrite && \
 kubectl get ns envoy-gateway-system --show-labels
 

@@ -17,3 +17,8 @@ security add-generic-password \
   -a "$USER" \
   -s "digitalocean-api-token"
   -w "do.XXXXXXJSHJBDHJBSHJDBSXXXXXXXXXXXX"
+
+security add-generic-password \
+  -a "$USER" \
+  -s "grafana-admin-password"
+  -w "XXXXXXJSHJBDHJBSHJDBSXXXXXXXXXXXX"

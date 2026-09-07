@@ -49,7 +49,7 @@ output "domain" {
 }
 
 output "wildcard_record" {
-  value = "*.${digitalocean_record.dev_wildcard.name}.${digitalocean_domain.main.name}"
+  value = "${digitalocean_record.dev_wildcard.name}.${digitalocean_domain.main.name}"
 }
 
 output "platform_volume_id" {

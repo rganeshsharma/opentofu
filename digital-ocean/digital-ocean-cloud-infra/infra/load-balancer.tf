@@ -3,7 +3,7 @@ resource "digitalocean_loadbalancer" "platform" {
   region   = var.region
   size     = "lb-small"
   vpc_uuid = digitalocean_vpc.main.id
-  
+
   forwarding_rule {
     entry_protocol  = "https"
     entry_port      = 443
@@ -18,13 +18,13 @@ resource "digitalocean_loadbalancer" "platform" {
     target_port     = 30080
   }
 
-    forwarding_rule {
+  forwarding_rule {
     entry_protocol  = "tcp"
     entry_port      = 443
     target_protocol = "tcp"
     target_port     = 30443
   }
-  
+
   healthcheck {
     port     = 22
     protocol = "tcp"

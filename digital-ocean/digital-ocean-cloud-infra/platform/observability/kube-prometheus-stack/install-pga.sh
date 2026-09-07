@@ -2,6 +2,8 @@
 
 set -euo pipefail
 
+: "${GRAFANA_ADMIN_PASSWORD:?GRAFANA_ADMIN_PASSWORD is not set}"
+
 echo "Create and Install kube-prometheus-stack......" && \
 kubectl create namespace monitoring \
   --dry-run=client \
@@ -12,7 +14,7 @@ echo "Create Grafana Creds....." && \
 kubectl create secret generic grafana-admin-credentials \
   -n monitoring \
   --from-literal=admin-user=admin \
-  --from-literal=admin-password='P@ssw0rd@123'
+  --from-literal=admin-password='Ypur-Password'
 
 echo "Verify Secret exists...." && kubectl get secret grafana-admin-credentials -n monitoring
 
@@ -29,3 +31,7 @@ helm upgrade --install kube-prometheus-stack \
   --version 89.2.2 \
   --values values.yml \
   --wait
+
+echo "Verify Isntallation...." && \
+helm list -n monitoring && \
+kubectl get pods -n monitoring

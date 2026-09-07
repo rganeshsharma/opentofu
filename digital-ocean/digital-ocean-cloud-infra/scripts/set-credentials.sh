@@ -27,6 +27,14 @@ export SPACES_SECRET_KEY="$(
         -w
 )"
 
+
+export GRAFANA_ADMIN_PASSWORD="$(
+    security find-generic-password \
+        -a "$USER" \
+        -s grafana-admin-password \
+        -w
+)"
+
 export AWS_ACCESS_KEY_ID="$SPACES_ACCESS_KEY"
 export AWS_SECRET_ACCESS_KEY="$SPACES_SECRET_KEY"
 
