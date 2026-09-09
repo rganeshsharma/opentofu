@@ -8,3 +8,4 @@
 # Sensitive variable files
 *.tfvars
 *.tfvars.json
+digital-ocean/digital-ocean-cloud-infra/infra/platform/terraform.tfvars

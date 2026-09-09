@@ -1,5 +1,60 @@
 # Digital Ocean Loacl LLM Inference Benchmarking System
 
+## GOAL: Setup a Production ready AI platform that will use all workload types: Training, Fine-tuning, RAG, Agentic workloads and Inferencing
+```
+NOTE: Entperise Tools you will learn and Gen AI concepts showcase for Interview Prep
+
+Finish the GPU runtime layer with direct Bash/Helm/kubectl only
+NVIDIA stack
+Device Plugin
+vLLM
+SGLang
+Triton
+TensorRT-LLM
+DCGM/metrics
+Inference systems
+OpenAI-compatible serving
+batching / continuous batching
+KV cache / PagedAttention
+prefix caching
+quantization
+tensor parallelism
+speculative decoding
+benchmarking
+failure scenarios and GPU OOM troubleshooting
+RAG
+ingestion
+chunking
+embeddings
+vector DB
+retrieval
+reranking
+generation
+RAGAS evaluation
+observability
+Agents
+FastAPI
+LangGraph
+tool calling
+MCP
+memory/state
+multi-step workflows
+failure/retry patterns
+human-in-the-loop
+AI / Inference Ops
+Prometheus/Grafana metrics
+GPU utilization
+TTFT
+TPOT
+throughput
+tokens/sec
+queue depth
+KV-cache utilization
+model loading
+autoscaling concepts
+model rollout/versioning
+tracing/evaluation
+```
 ## Digital Ocean self managed RKE2 Inference System Architecture:
 
 ![HLD-Architecture]digital-ocean-inferecne-system/opentofu/arch.svg

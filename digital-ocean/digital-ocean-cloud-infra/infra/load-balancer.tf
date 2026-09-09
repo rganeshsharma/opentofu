@@ -5,13 +5,6 @@ resource "digitalocean_loadbalancer" "platform" {
   vpc_uuid = digitalocean_vpc.main.id
 
   forwarding_rule {
-    entry_protocol  = "https"
-    entry_port      = 443
-    target_protocol = "https"
-    target_port     = 443
-  }
-
-  forwarding_rule {
     entry_protocol  = "tcp"
     entry_port      = 80
     target_protocol = "tcp"
@@ -26,7 +19,7 @@ resource "digitalocean_loadbalancer" "platform" {
   }
 
   healthcheck {
-    port     = 22
+    port     = 30080
     protocol = "tcp"
   }
   droplet_ids = [digitalocean_droplet.cpu_node.id]

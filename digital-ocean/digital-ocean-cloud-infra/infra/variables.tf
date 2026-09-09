@@ -61,12 +61,6 @@ variable "gpu_size" {
 }
 
 
-variable "platform_volume_size" {
-  description = "Persistent platform block storage size in GiB"
-  type        = number
-  default     = 200
-}
-
 
 variable "ssh_public_key_path" {
   description = "Path to SSH public key"
